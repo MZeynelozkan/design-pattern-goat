@@ -117,6 +117,6 @@ class GercekFabrikaB extends Fabrika {
 }
 
 const fabrikaA = new GercekFabrikaA();
-console.log(fabrikaA.icecekUret());
+fabrikaA.icecekUret();
 const fabrikaB = new GercekFabrikaB();
-console.log(fabrikaB.icecekUret());
+fabrikaB.icecekUret();
