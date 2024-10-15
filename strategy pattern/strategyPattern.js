@@ -89,3 +89,66 @@ main.print(4, 6, new ConcreteStrategyMultiply()); // Çarpma sonucu: 24
    Bu yaklaşım, kodun büyümesini önler ve her bir stratejinin kendi içinde bağımsız çalışmasını sağlar. 
    Yeni bir ulaşım modu eklemek istediğimizde, mevcut sınıfları değiştirmek yerine yalnızca yeni bir strateji sınıfı ekleyebiliriz. 
    Sonuç olarak, kodumuz daha okunabilir, sürdürülebilir ve genişletilebilir hale gelir. */
+
+//    const StrategyInterface = {
+//     execute: function(a, b) {
+//         throw new Error("This method should be overridden!"); // Alt sınıflar bu metodu kendilerine özgü bir şekilde uygulamalıdır.
+//     }
+// };
+
+// // Toplama Stratejisi
+// const ConcreteStrategyAdd = Object.create(StrategyInterface);
+// ConcreteStrategyAdd.execute = function(a, b) {
+//     return a + b; // Toplama işlemini gerçekleştirir.
+// };
+
+// // Çıkarma Stratejisi
+// const ConcreteStrategySubtract = Object.create(StrategyInterface);
+// ConcreteStrategySubtract.execute = function(a, b) {
+//     return a - b; // Çıkarma işlemini gerçekleştirir.
+// };
+
+// // Çarpma Stratejisi
+// const ConcreteStrategyMultiply = Object.create(StrategyInterface);
+// ConcreteStrategyMultiply.execute = function(a, b) {
+//     return a * b; // Çarpma işlemini gerçekleştirir.
+// };
+
+// // Bağlam Sınıfı
+// class Context {
+//     _strategy; // Kullanılacak stratejiyi tutar.
+
+//     constructor(strategy) {
+//         this._strategy = strategy; // Başlangıçta bir strateji atanır.
+//     }
+
+//     setStrategy(strategy) {
+//         this._strategy = strategy; // Stratejiyi değiştirmek için kullanılır.
+//     }
+
+//     executeStrategy(a, b) {
+//         return this._strategy.execute(a, b); // Belirtilen strateji ile işlemi gerçekleştirir.
+//     }
+// }
+
+// // Örnek Uygulama
+// class ExampleApplication {
+//     constructor() {
+//         this.context = new Context(ConcreteStrategyAdd); // Varsayılan strateji olarak toplama belirlenir.
+//     }
+
+//     executeStrategy(a, b, strategy) {
+//         this.context.setStrategy(strategy); // Geçerli strateji ayarlanır.
+//         return this.context.executeStrategy(a, b); // Strateji kullanılarak işlem yapılır.
+//     }
+
+//     print(a, b, strategy) {
+//         console.log(this.executeStrategy(a, b, strategy)); // Sonuç konsola yazdırılır.
+//     }
+// }
+
+// // Uygulamayı başlatma
+// const main = new ExampleApplication();
+// main.print(1, 2, ConcreteStrategyAdd); // Toplama sonucu: 3
+// main.print(5, 3, ConcreteStrategySubtract); // Çıkarma sonucu: 2
+// main.print(4, 6, ConcreteStrategyMultiply); // Çarpma sonucu: 24
