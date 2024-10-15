@@ -77,3 +77,46 @@ Concrete ProductA / ProductB (Gerçek Ürünler): Gerçek içeceklerdir. Kahve v
 Creator (Yaratıcı): Kafedir. Bu sınıf, hangi içeceği yapacağını bilmez, sadece "bir içecek yap" der.
 Concrete CreatorA / CreatorB: Bunlar içeceği yapan bölümlerdir. Biri sadece Kahve yapar, diğeri sadece Çay yapar.
 Sonuç olarak, kafe (creator), içecekleri doğrudan yapmaz, hangi içeceği yapacağını fabrikaya (factory method) sorar. Fabrika ise hangi içeceği yapacağını seçer ve uygun içeceği üretir. Bu tasarım sayesinde, menüye yeni bir içecek eklenirse, kafeyi değiştirmek zorunda kalmazsınız, sadece yeni bir üretim bölümü (creator) ekleyebilirsiniz.*/
+
+class Kafe {
+  icecekUret() {
+    throw new error("bu sadece subclasslar tarafindan kullanilmali");
+  }
+}
+
+class Kahve extends Kafe {
+  icecekUret() {
+    console.log("kahve uretildi");
+  }
+}
+
+class Cay extends Kafe {
+  icecekUret() {
+    console.log("cay uretildi");
+  }
+}
+
+class Fabrika {
+  icecekUret() {
+    throw new error("bu sadece subclasslar tarafindan kullanilmali");
+  }
+}
+
+class GercekFabrikaA extends Fabrika {
+  icecekUret() {
+    const kahve = new Kahve();
+    return kahve.icecekUret();
+  }
+}
+
+class GercekFabrikaB extends Fabrika {
+  icecekUret() {
+    const cay = new Cay();
+    return cay.icecekUret();
+  }
+}
+
+const fabrikaA = new GercekFabrikaA();
+console.log(fabrikaA.icecekUret());
+const fabrikaB = new GercekFabrikaB();
+console.log(fabrikaB.icecekUret());
